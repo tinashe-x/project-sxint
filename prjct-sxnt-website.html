@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <base target="_self">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRJCT SXNT | Modern Christian Clothing</title>
+    <meta name="description"
+        content="A futuristic Christian clothing brand merging faith with contemporary streetwear. Join our exclusive prelaunch waitlist.">
+    <meta name="keywords" content="christian clothing, streetwear, faith fashion, modern christian apparel, PRJCT SXNT">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: "#050505",
+                            light: "#111111"
+                        },
+                        secondary: {
+                            DEFAULT: "#FFFFFF",
+                            muted: "rgba(255,255,255,0.6)"
+                        },
+                        accent: {
+                            DEFAULT: "#F2F2F2",
+                            dark: "#A0A0A0",
+                            glow: "rgba(255,255,255,0.05)"
+                        },
+                        gold: "#F2F2F2", // Decided to keep it monochrome
+                        purple: "#333333" // Muted dark gray
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'display': ['Space Grotesk', 'monospace']
+                    },
+                    animation: {
+                        'float': 'float 8s ease-in-out infinite',
+                        'pulse-glow': 'pulse-glow 4s ease-in-out infinite',
+                        'slide-up': 'slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1)'
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-15px)' }
+                        },
+                        'pulse-glow': {
+                            '0%, 100%': { opacity: 0.8 },
+                            '50%': { opacity: 0.4 }
+                        },
+                        'slide-up': {
+                            '0%': { transform: 'translateY(30px)', opacity: 0 },
+                            '100%': { transform: 'translateY(0)', opacity: 1 }
+                        }
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        'noise-texture': "url('data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E')"
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-effect {
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #FFFFFF 0%, rgba(255, 255, 255, 0.4) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .floating-element {
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .card-hover {
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid transparent;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .tab-content {
+            display: none;
+            animation: slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .neon-glow {
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .noise-bg {
+            background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noise"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noise)"/%3E%3C/svg%3E');
+            opacity: 0.04;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-primary text-secondary font-sans overflow-x-hidden">
+    <!-- Noise overlay -->
+    <div class="fixed inset-0 noise-bg pointer-events-none z-50"></div>
+
+    <!-- Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-40 glass-effect">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <img src="logo.png" alt="Celtic Cross Logo"
+                        class="w-10 h-10 object-contain grayscale brightness-200 contrast-125">
+                    <span class="font-display font-bold text-xl tracking-tighter">PRJCT SXNT</span>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <button onclick="switchTab('home')"
+                        class="tab-btn text-sm font-medium hover:text-accent transition-colors active">Home</button>
+                    <button onclick="switchTab('gallery')"
+                        class="tab-btn text-sm font-medium hover:text-accent transition-colors">Gallery</button>
+                    <button onclick="switchTab('catalog')"
+                        class="tab-btn text-sm font-medium hover:text-accent transition-colors">Catalog</button>
+                    <button onclick="switchTab('contact')"
+                        class="tab-btn text-sm font-medium hover:text-accent transition-colors">Contact</button>
+                    <button onclick="switchTab('payment')"
+                        class="tab-btn text-sm font-medium hover:text-accent transition-colors">Payment</button>
+                </div>
+
+                <button id="mobileMenuBtn" class="md:hidden text-xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-2">
+                <div class="flex flex-col space-y-3">
+                    <button onclick="switchTab('home')"
+                        class="tab-btn text-left py-2 border-b border-gray-800 active">Home</button>
+                    <button onclick="switchTab('gallery')"
+                        class="tab-btn text-left py-2 border-b border-gray-800">Gallery</button>
+                    <button onclick="switchTab('catalog')"
+                        class="tab-btn text-left py-2 border-b border-gray-800">Catalog</button>
+                    <button onclick="switchTab('contact')"
+                        class="tab-btn text-left py-2 border-b border-gray-800">Contact</button>
+                    <button onclick="switchTab('payment')"
+                        class="tab-btn text-left py-2 border-b border-gray-800">Payment</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-20">
+        <!-- Home Tab - Waitlist -->
+        <div id="home" class="tab-content active min-h-screen">
+            <div class="container mx-auto px-6 py-16">
+                <div class="max-w-6xl mx-auto">
+                    <!-- Floating Elements Background -->
+                    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+                        <div
+                            class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-gradient-to-r from-accent-glow to-transparent blur-3xl opacity-20 floating-element">
+                        </div>
+                        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-gradient-to-l from-purple to-transparent blur-3xl opacity-20 floating-element"
+                            style="animation-delay: 2s;"></div>
+                        <div class="absolute top-3/4 left-3/4 w-48 h-48 rounded-full bg-gradient-to-b from-gold to-transparent blur-3xl opacity-20 floating-element"
+                            style="animation-delay: 4s;"></div>
+                    </div>
+
+                    <div class="relative z-10">
+                        <div class="text-center mb-16">
+                            <div class="inline-block mb-8">
+                                <div class="w-48 h-48 mx-auto mb-10 floating-element">
+                                    <img src="logo.png" alt="Celtic Cross Logo"
+                                        class="w-full h-full object-contain grayscale brightness-200 contrast-125">
+                                </div>
+                                <div class="text-xs uppercase tracking-[0.4em] text-secondary-muted mb-4 font-medium">
+                                    Establishing the New Covenant</div>
+                                <h1
+                                    class="text-6xl md:text-8xl font-display font-bold mb-8 text-gradient tracking-tighter italic">
+                                    PRJCT SXNT</h1>
+                                <p class="text-xl text-secondary-muted max-w-2xl mx-auto leading-relaxed font-light">
+                                    Where ancient faith meets the noir future. A monochrome distillation of Christian
+                                    streetwear.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="max-w-2xl mx-auto glass-effect rounded-2xl p-8 md:p-12">
+                            <h2 class="text-3xl font-bold mb-6 text-center">Join the Movement</h2>
+                            <p class="text-secondary-muted text-center mb-8">
+                                Be the first to experience our exclusive collection. Sign up for early access, special
+                                pricing, and limited edition drops.
+                            </p>
+
+                            <form id="waitlistForm" class="space-y-6">
+                                <div>
+                                    <input type="email" id="email" required placeholder="Enter your email address"
+                                        class="w-full px-6 py-4 bg-primary-light border border-gray-800 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all">
+                                    <div id="emailError" class="text-red-400 text-sm mt-2 hidden">Please enter a valid
+                                        email address</div>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <input type="text" id="firstName" placeholder="First Name"
+                                        class="px-6 py-4 bg-primary-light border border-gray-800 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all">
+                                    <input type="text" id="lastName" placeholder="Last Name"
+                                        class="px-6 py-4 bg-primary-light border border-gray-800 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all">
+                                </div>
+
+                                <div>
+                                    <select id="size"
+                                        class="w-full px-6 py-4 bg-primary-light border border-gray-800 rounded-xl text-white focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all">
+                                        <option value="" disabled selected>Select your preferred size</option>
+                                        <option value="xs">XS</option>
+                                        <option value="s">S</option>
+                                        <option value="m">M</option>
+                                        <option value="l">L</option>
+                                        <option value="xl">XL</option>
+                                        <option value="xxl">XXL</option>
+                                    </select>
+                                </div>
+
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="newsletter"
+                                        class="w-5 h-5 rounded border-gray-800 bg-primary-light text-accent focus:ring-accent">
+                                    <label for="newsletter" class="ml-3 text-sm text-secondary-muted">
+                                        Receive updates about new collections and exclusive offers
+                                    </label>
+                                </div>
+
+                                <button type="submit"
+                                    class="w-full py-4 bg-white text-black font-bold rounded-xl hover:bg-gray-200 transition-all duration-500 transform hover:-translate-y-1 uppercase tracking-widest text-sm">
+                                    Join Waitlist
+                                </button>
+                            </form>
+
+                            <div class="mt-8 text-center">
+                                <p class="text-sm text-secondary-muted">
+                                    <i class="fas fa-lock mr-2"></i>Your information is secure. We respect your privacy.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="mt-16 text-center">
+                            <div class="inline-flex items-center space-x-8">
+                                <div class="text-center">
+                                    <div class="text-4xl font-bold text-gradient">2.4K</div>
+                                    <div class="text-sm text-secondary-muted mt-2">Already Joined</div>
+                                </div>
+                                <div class="h-12 w-px bg-gray-800"></div>
+                                <div class="text-center">
+                                    <div class="text-4xl font-bold text-gradient">72</div>
+                                    <div class="text-sm text-secondary-muted mt-2">Days to Launch</div>
+                                </div>
+                                <div class="h-12 w-px bg-gray-800"></div>
+                                <div class="text-center">
+                                    <div class="text-4xl font-bold text-gradient">15%</div>
+                                    <div class="text-sm text-secondary-muted mt-2">Early Access Discount</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gallery Tab -->
+        <div id="gallery" class="tab-content min-h-screen py-16">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl md:text-5xl font-display font-bold mb-4 text-gradient">Gallery</h2>
+                    <p class="text-xl text-secondary-muted max-w-3xl mx-auto">
+                        Experience our vision through a curated collection of designs, inspirations, and
+                        behind-the-scenes moments.
+                    </p>
+                </div>
+
+                <!-- Floating Elements Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                    <div class="relative group card-hover">
+                        <div
+                            class="absolute -inset-4 bg-gradient-to-r from-accent to-purple rounded-3xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity">
+                        </div>
+                        <div class="relative glass-effect rounded-2xl overflow-hidden">
+                            <img src="https://picsum.photos/600/400?random=1"
+                                alt="Design studio workspace with sketches and fabric samples"
+                                class="w-full h-64 object-cover" loading="lazy">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">Design Process</h3>
+                                <p class="text-secondary-muted">Behind the scenes of our creative studio</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative group card-hover">
+                        <div
+                            class="absolute -inset-4 bg-gradient-to-r from-purple to-gold rounded-3xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity">
+                        </div>
+                        <div class="relative glass-effect rounded-2xl overflow-hidden">
+                            <img src="https://picsum.photos/600/400?random=2"
+                                alt="Model wearing PRJCT SXNT streetwear in urban setting"
+                                class="w-full h-64 object-cover" loading="lazy">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">Urban Spirit</h3>
+                                <p class="text-secondary-muted">Streetwear meets spiritual expression</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative group card-hover">
+                        <div
+                            class="absolute -inset-4 bg-gradient-to-r from-gold to-accent rounded-3xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity">
+                        </div>
+                        <div class="relative glass-effect rounded-2xl overflow-hidden">
+                            <img src="https://picsum.photos/600/400?random=3"
+                                alt="Fabric textures and material close-ups" class="w-full h-64 object-cover"
+                                loading="lazy">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">Material Innovation</h3>
+                                <p class="text-secondary-muted">Premium sustainable fabrics</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Large Floating Element -->
+                <div class="relative max-w-4xl mx-auto mb-16">
+                    <div
+                        class="absolute -inset-8 bg-gradient-to-r from-accent via-purple to-gold rounded-3xl blur-3xl opacity-10 floating-element">
+                    </div>
+                    <div class="relative glass-effect rounded-2xl p-8 md:p-12">
+                        <div class="flex flex-col md:flex-row items-center">
+                            <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                                <h3 class="text-3xl font-bold mb-4">The Vision</h3>
+                                <p class="text-secondary-muted mb-6">
+                                    PRJCT SXNT represents a movement where faith intersects with contemporary culture.
+                                    Each piece tells a story of purpose, designed for those who carry their beliefs with
+                                    style and substance.
+                                </p>
+                                <div class="flex items-center space-x-4">
+                                    <span
+                                        class="px-4 py-2 bg-accent/20 text-accent rounded-full text-sm font-medium">Streetwear</span>
+                                    <span
+                                        class="px-4 py-2 bg-purple/20 text-purple rounded-full text-sm font-medium">Minimalist</span>
+                                    <span
+                                        class="px-4 py-2 bg-gold/20 text-gold rounded-full text-sm font-medium">Premium</span>
+                                </div>
+                            </div>
+                            <div class="md:w-1/2">
+                                <img src="https://picsum.photos/600/400?random=4"
+                                    alt="Brand vision and inspiration mood board" class="w-full rounded-xl"
+                                    loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Catalog Tab -->
+        <div id="catalog" class="tab-content min-h-screen py-16">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl md:text-5xl font-display font-bold mb-4 text-gradient">Product Catalog</h2>
+                    <p class="text-xl text-secondary-muted max-w-3xl mx-auto">
+                        Explore our inaugural collection of premium Christian streetwear.
+                    </p>
+                </div>
+
+                <!-- Filter Tabs -->
+                <div class="flex flex-wrap justify-center gap-4 mb-12">
+                    <button onclick="filterProducts('all')"
+                        class="filter-btn px-6 py-3 glass-effect rounded-full font-medium hover:bg-accent hover:text-white transition-all active">All
+                        Products</button>
+                    <button onclick="filterProducts('apparel')"
+                        class="filter-btn px-6 py-3 glass-effect rounded-full font-medium hover:bg-accent hover:text-white transition-all">Apparel</button>
+                    <button onclick="filterProducts('accessories')"
+                        class="filter-btn px-6 py-3 glass-effect rounded-full font-medium hover:bg-accent hover:text-white transition-all">Accessories</button>
+                    <button onclick="filterProducts('limited')"
+                        class="filter-btn px-6 py-3 glass-effect rounded-full font-medium hover:bg-accent hover:text-white transition-all">Limited
+                        Edition</button>
+                </div>
+
+                <!-- Products Grid -->
+                <div id="productsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Products will be dynamically loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Tab -->
+        <div id="contact" class="tab-content min-h-screen py-16">
+            <div class="container mx-auto px-6">
+                <div class="max-w-6xl mx-auto">
+                    <div class="text-center mb-12">
+                        <h2 class="text-4xl md:text-5xl font-display font-bold mb-4 text-gradient">Contact Us</h2>
+                        <p class="text-xl text-secondary-muted max-w-3xl mx-auto">
+                            Get in touch with our team. We're here to answer your questions and connect with our
+                            community.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                        <!-- Contact Form -->
+                        <div class="glass-effect rounded-2xl p-8">
+                            <h3 class="text-2xl font-bold mb-6">Send us a message</h3>
+                            <form id="contactForm" class="space-y-6">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label for="contactName" class="block text-sm font-medium mb-2">Full
+                                            Name</label>
+                                        <input type="text" id="contactName" required
+                                            class="w-full px-4 py-3 bg-primary-light border border-gray-800 rounded-xl text-white focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all">
+                                    </div>
+                                    <div>
+                                        <label for="contactEmail" class="block text-sm font-medium mb-2">Email
+                                            Address</label>
+                                        <input type="email" id="contactEmail" required
+                                            class="w-full px-4 py-3 bg-primary-light border border-gray-800 rounded-xl text-white focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label for="contactSubject" class="block text-sm font-medium mb-2">Subject</label>
+                                    <input type="text" id="contactSubject" required
+                                        class="w-full px-4 py-3 bg-primary-light border border-gray-800 rounded-xl text-white focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all">
+                                </div>
+
+                                <div>
+                                    <label for="contactMessage" class="block text-sm font-medium mb-2">Message</label>
+                                    <textarea id="contactMessage" rows="5" required
+                                        class="w-full px-4 py-3 bg-primary-light border border-gray-800 rounded-xl text-white focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all resize-none"></textarea>
+                                </div>
+
+                                <button type="submit"
+                                    class="w-full py-4 bg-gradient-to-r from-accent to-purple text-white font-semibold rounded-xl hover:from-accent-dark hover:to-purple-700 transition-all">
+                                    Send Message
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Contact Info -->
+                        <div class="space-y-8">
+                            <div class="glass-effect rounded-2xl p-8">
+                                <h3 class="text-2xl font-bold mb-6">Get in Touch</h3>
+                                <div class="space-y-6">
+                                    <div class="flex items-start space-x-4">
+                                        <div
+                                            class="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center">
+                                            <i class="fas fa-envelope text-accent text-xl"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold mb-1">Email</h4>
+                                            <p class="text-secondary-muted">hello@prjctsxnt.com</p>
+                                            <p class="text-sm text-gray-500">Response within 24 hours</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-start space-x-4">
+                                        <div
+                                            class="w-12 h-12 rounded-full bg-purple/20 flex items-center justify-center">
+                                            <i class="fas fa-phone text-purple text-xl"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold mb-1">Phone</h4>
+                                            <p class="text-secondary-muted">+1 (555) 123-4567</p>
+                                            <p class="text-sm text-gray-500">Mon-Fri, 9AM-6PM EST</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-start space-x-4">
+                                        <div class="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center">
+                                            <i class="fas fa-map-marker-alt text-gold text-xl"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold mb-1">Location</h4>
+                                            <p class="text-secondary-muted">Los Angeles, CA</p>
+                                            <p class="text-sm text-gray-500">Based in the creative heart of LA</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="glass-effect rounded-2xl p-8">
+                                <h3 class="text-2xl font-bold mb-6">Social Media</h3>
+                                <div class="flex space-x-4">
+                                    <a href="#"
+                                        class="w-12 h-12 rounded-full bg-primary-light flex items-center justify-center hover:bg-accent hover:text-white transition-all">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                    <a href="#"
+                                        class="w-12 h-12 rounded-full bg-primary-light flex items-center justify-center hover:bg-accent hover:text-white transition-all">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="#"
+                                        class="w-12 h-12 rounded-full bg-primary-light flex items-center justify-center hover:bg-accent hover:text-white transition-all">
+                                        <i class="fab fa-tiktok"></i>
+                                    </a>
+                                    <a href="#"
+                                        class="w-12 h-12 rounded-full bg-primary-light flex items-center justify-center hover:bg-accent hover:text-white transition-all">
+                                        <i class="fab fa-youtube"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment Tab -->
+        <div id="payment" class="tab-content min-h-screen py-16">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto">
+                    <div class="text-center mb-12">
+                        <h2 class="text-4xl md:text-5xl font-display font-bold mb-4 text-gradient">Secure Checkout</h2>
+                        <p class="text-xl text-secondary-muted">
+                            Complete your purchase with our secure payment system
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        <!-- Order Summary -->
+                        <div class="lg:col-span-2">
+                            <div class="glass-effect rounded-2xl p-8 mb-8">
+                                <h3 class="text-2xl font-bold mb-6">Order Summary</h3>
+                                <div id="cartItems" class="space-y-4 mb-6">
+                                    <!-- Cart items will be dynamically loaded -->
+                                </div>
+
+                                <div class="border-t border-gray-800 pt-6 space-y-4">
+                                    <div class="flex justify-between">
+                                        <span class="text-secondary-muted">Subtotal</span>
+                                        <span class="font-semibold">$198.00</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-secondary-muted">Shipping</span>
+                                        <span class="font-semibold">$12.99</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-secondary-muted">Tax</span>
+                                        <span class="font-semibold">$16.45</span>
+                                    </div>
+                                    <div class="flex justify-between text-xl font-bold pt-4 border-t border-gray-800">
+                                        <span>Total</span>
+                                        <span>$227.44</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="glass-effect rounded-2xl p-8">
+                                <h3 class="text-2xl font-bold mb-6">Shipping Information</h3>
+                                <div class="space-y-6">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div>
+                                            <label class="block text-sm font-medium mb-2">First Name</label>
+                                            <input type="text"
+                                                class="w-full px-4 py-3 bg-primary-light border border-gray-800 rounded-xl text-white"
+                                                value="John">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium mb-2">Last Name</label>
+                                            <input type="text"
+                                                class="w-full px-4 py-3 bg-primary-light border border-gray-800 rounded-xl text-white"
+                                                value="Doe">
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-sm font-medium mb-2">Address</label>
+                                        <input type="text"
+                                            class="w-full px-4 py-3 bg-primary-light border border-gray-800 rounded-xl text-white"
+                                            value="123 Main Street">
+                                    </div>
+
+                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                        <div>
+                                            <label class="block text-sm font-medium mb-2">City</label>
+                                            <input type="text"
+                                                class="w-full px-4 py-3 bg-primary-light border border-gray-800 rounded-xl text-white"
+                                                value="Los Angeles">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium mb-2">State</label>
+                                            <input type="text"
+                                                class="w-full px-4 py-3 bg-primary-light border border-gray-800 rounded-xl text-white"
+                                                value="CA">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium mb-2">ZIP Code</label>
+                                            <input type="text"
+                                                class="w-full px-4 py-3 bg-primary-light border border-gray-800 rounded-xl text-white"
+                                                value="90001">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Payment Details -->
+                        <div>
+                            <div class="glass-effect rounded-2xl p-8 sticky top-24">
+                                <h3 class="text-2xl font-bold mb-6">Payment Details</h3>
+
+                                <div class="space-y-6">
+                                    <div>
+                                        <label class="block text-sm font-medium mb-2">Card Number</label>
+                                        <div class="relative">
+                                            <input type="text" placeholder="1234 5678 9012 3456"
+                                                class="w-full px-4 py-3 bg-primary-light border border-gray-800 rounded-xl text-white pl-12">
+                                            <div class="absolute left-4 top-1/2 transform -translate-y-1/2">
+                                                <i class="far fa-credit-card text-gray-500"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="grid grid-cols-2 gap-6">
+                                        <div>
+                                            <label class="block text-sm font-medium mb-2">Expiry Date</label>
+                                            <input type="text" placeholder="MM/YY"
+                                                class="w-full px-4 py-3 bg-primary-light border border-gray-800 rounded-xl text-white">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium mb-2">CVC</label>
+                                            <input type="text" placeholder="123"
+                                                class="w-full px-4 py-3 bg-primary-light border border-gray-800 rounded-xl text-white">
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-sm font-medium mb-2">Cardholder Name</label>
+                                        <input type="text" placeholder="John Doe"
+                                            class="w-full px-4 py-3 bg-primary-light border border-gray-800 rounded-xl text-white">
+                                    </div>
+
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="saveCard"
+                                            class="w-5 h-5 rounded border-gray-800 bg-primary-light text-accent">
+                                        <label for="saveCard" class="ml-3 text-sm text-secondary-muted">
+                                            Save card for future purchases
+                                        </label>
+                                    </div>
+
+                                    <button onclick="processPayment()"
+                                        class="w-full py-4 bg-gradient-to-r from-accent to-purple text-white font-semibold rounded-xl hover:from-accent-dark hover:to-purple-700 transition-all flex items-center justify-center">
+                                        <i class="fas fa-lock mr-3"></i>
+                                        Pay $227.44
+                                    </button>
+
+                                    <div class="text-center">
+                                        <p class="text-sm text-secondary-muted">
+                                            <i class="fas fa-shield-alt mr-2"></i>Secure SSL encryption
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="mt-8 pt-8 border-t border-gray-800">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <span class="text-secondary-muted">Accepted Payments</span>
+                                    </div>
+                                    <div class="flex space-x-3">
+                                        <div class="w-12 h-8 bg-primary-light rounded flex items-center justify-center">
+                                            <i class="fab fa-cc-visa text-gray-400"></i>
+                                        </div>
+                                        <div class="w-12 h-8 bg-primary-light rounded flex items-center justify-center">
+                                            <i class="fab fa-cc-mastercard text-gray-400"></i>
+                                        </div>
+                                        <div class="w-12 h-8 bg-primary-light rounded flex items-center justify-center">
+                                            <i class="fab fa-cc-amex text-gray-400"></i>
+                                        </div>
+                                        <div class="w-12 h-8 bg-primary-light rounded flex items-center justify-center">
+                                            <i class="fab fa-cc-paypal text-gray-400"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-primary-light mt-20">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div
+                            class="w-10 h-10 rounded-full bg-gradient-to-br from-accent to-purple flex items-center justify-center">
+                            <span class="text-white font-display font-bold">PS</span>
+                        </div>
+                        <span class="font-display font-bold text-xl">PRJCT SXNT</span>
+                    </div>
+                    <p class="text-secondary-muted text-sm">
+                        Where faith meets future. Modern Christian apparel for the contemporary believer.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-6">Collection</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#"
+                                class="text-secondary-muted hover:text-accent transition-colors text-sm">Apparel</a>
+                        </li>
+                        <li><a href="#"
+                                class="text-secondary-muted hover:text-accent transition-colors text-sm">Accessories</a>
+                        </li>
+                        <li><a href="#" class="text-secondary-muted hover:text-accent transition-colors text-sm">Limited
+                                Edition</a></li>
+                        <li><a href="#"
+                                class="text-secondary-muted hover:text-accent transition-colors text-sm">Upcoming
+                                Drops</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-6">Company</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-secondary-muted hover:text-accent transition-colors text-sm">About
+                                Us</a></li>
+                        <li><a href="#"
+                                class="text-secondary-muted hover:text-accent transition-colors text-sm">Mission</a>
+                        </li>
+                        <li><a href="#"
+                                class="text-secondary-muted hover:text-accent transition-colors text-sm">Blog</a></li>
+                        <li><a href="#"
+                                class="text-secondary-muted hover:text-accent transition-colors text-sm">Careers</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-6">Stay Connected</h4>
+                    <p class="text-secondary-muted text-sm mb-4">
+                        Join our community for exclusive updates
+                    </p>
+                    <div class="flex space-x-3">
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-primary flex items-center justify-center hover:bg-accent hover:text-white transition-all">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-primary flex items-center justify-center hover:bg-accent hover:text-white transition-all">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-primary flex items-center justify-center hover:bg-accent hover:text-white transition-all">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-secondary-muted text-sm">
+                    &copy; 2024 PRJCT SXNT. All rights reserved. |
+                    <a href="#" class="hover:text-accent transition-colors">Privacy Policy</a> |
+                    <a href="#" class="hover:text-accent transition-colors">Terms of Service</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden">
+        <div class="glass-effect rounded-2xl p-8 max-w-md mx-4">
+            <div class="text-center">
+                <div
+                    class="w-20 h-20 rounded-full bg-gradient-to-r from-green-500 to-emerald-600 flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-check text-white text-3xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Success!</h3>
+                <p class="text-secondary-muted mb-6" id="successMessage">Your action was completed successfully.</p>
+                <button onclick="closeSuccessModal()"
+                    class="px-8 py-3 bg-accent text-white rounded-xl hover:bg-accent-dark transition-colors">
+                    Continue
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Define data at the beginning
+        const products = [
+            {
+                "id": 1,
+                "name": "Covenant Tee",
+                "category": "apparel",
+                "price": 55.00,
+                "image": "https://picsum.photos/400/500?random=50&grayscale",
+                "description": "Heavyweight cotton tee with distressed Celtic cross print",
+                "colors": ["Black", "Bone"],
+                "sizes": ["S", "M", "L", "XL"]
+            },
+            {
+                "id": 2,
+                "name": "Noir Cross Hoodie",
+                "category": "apparel",
+                "price": 95.00,
+                "image": "https://picsum.photos/400/500?random=60&grayscale",
+                "description": "Premium oversized hoodie with high-density Celtic embroidery",
+                "colors": ["Midnight", "Charcoal"],
+                "sizes": ["M", "L", "XL", "XXL"]
+            },
+            {
+                "id": 3,
+                "name": "Ascension Cap",
+                "category": "accessories",
+                "price": 38.00,
+                "image": "https://picsum.photos/400/500?random=70&grayscale",
+                "description": "Structured canvas cap with silver-threaded Celtic knot",
+                "colors": ["Black", "Slate"],
+                "sizes": ["One Size"]
+            },
+            {
+                "id": 4,
+                "name": "Guardian Overshirt",
+                "category": "apparel",
+                "price": 115.00,
+                "image": "https://picsum.photos/400/500?random=80&grayscale",
+                "description": "Technical worker jacket with tonal brand patch",
+                "colors": ["Void Black"],
+                "sizes": ["S", "M", "L", "XL"]
+            },
+            {
+                "id": 5,
+                "name": "Eternity Beanie",
+                "category": "accessories",
+                "price": 32.00,
+                "image": "https://picsum.photos/400/500?random=90&grayscale",
+                "description": "Merino wool beanie featuring the Celtic knotwork",
+                "colors": ["Black", "Cold Gray"],
+                "sizes": ["One Size"]
+            },
+            {
+                "id": 6,
+                "name": "Golgotha Parka (LE)",
+                "category": "limited",
+                "price": 245.00,
+                "image": "https://picsum.photos/400/500?random=100&grayscale",
+                "description": "Exclusive launch outerwear with full-back cross embroidery",
+                "colors": ["Deep Black"],
+                "sizes": ["M", "L", "XL"],
+                "limited": true
+            }
+        ];
+
+        const cartItems = [
+            {
+                "id": 1,
+                "name": "Faith Tee",
+                "color": "Black",
+                "size": "M",
+                "price": 49.99,
+                "quantity": 2,
+                "image": "https://picsum.photos/100/100?random=11"
+            },
+            {
+                "id": 4,
+                "name": "Sanctuary Jacket",
+                "color": "Gray",
+                "size": "L",
+                "price": 129.99,
+                "quantity": 1,
+                "image": "https://picsum.photos/100/100?random=12"
+            }
+        ];
+
+        // Initialize application
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize products grid
+            renderProducts('all');
+
+            // Initialize cart items
+            renderCartItems();
+
+            // Setup event listeners
+            setupEventListeners();
+
+            // Set current year in footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+        });
+
+        // Function to render products
+        function renderProducts(category) {
+            const productsGrid = document.getElementById('productsGrid');
+            const filteredProducts = category === 'all' ? products : products.filter(product => product.category === category);
+
+            productsGrid.innerHTML = filteredProducts.map(product => `
+                <div class="relative group card-hover">
+                    <div class="absolute -inset-4 bg-white rounded-3xl blur-xl opacity-0 group-hover:opacity-10 transition-opacity"></div>
+                    <div class="relative glass-effect rounded-2xl overflow-hidden">
+                        ${product.limited ? '<div class="absolute top-4 right-4 bg-white text-black px-3 py-1 rounded-full text-[10px] font-bold z-10 tracking-widest">LIMITED</div>' : ''}
+                        <img 
+                            src="${product.image}" 
+                            alt="${product.name}" 
+                            class="w-full h-64 object-cover"
+                            loading="lazy"
+                        >
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-bold">${product.name}</h3>
+                                <span class="text-lg font-bold text-accent">$${product.price.toFixed(2)}</span>
+                            </div>
+                            <p class="text-secondary-muted text-sm mb-4">${product.description}</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                ${product.colors.map(color => `
+                                    <span class="px-3 py-1 bg-primary-light rounded-full text-xs">${color}</span>
+                                `).join('')}
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <div class="flex gap-1">
+                                    ${product.sizes.map(size => `
+                                        <span class="w-8 h-8 flex items-center justify-center bg-primary-light rounded text-sm">${size}</span>
+                                    `).join('')}
+                                </div>
+                                <button 
+                                    onclick="addToCart(${product.id})"
+                                    class="px-6 py-2 bg-accent text-white rounded-full hover:bg-accent-dark transition-colors text-sm font-medium"
+                                >
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Update active filter button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active', 'bg-accent', 'text-white');
+                btn.classList.add('glass-effect', 'hover:bg-accent', 'hover:text-white');
+            });
+
+            const activeBtn = Array.from(document.querySelectorAll('.filter-btn')).find(btn =>
+                btn.textContent.trim() === (category === 'all' ? 'All Products' :
+                    category === 'apparel' ? 'Apparel' :
+                        category === 'accessories' ? 'Accessories' : 'Limited Edition')
+            );
+
+            if (activeBtn) {
+                activeBtn.classList.add('active', 'bg-accent', 'text-white');
+                activeBtn.classList.remove('glass-effect', 'hover:bg-accent', 'hover:text-white');
+            }
+        }
+
+        // Function to filter products
+        function filterProducts(category) {
+            renderProducts(category);
+        }
+
+        // Function to render cart items
+        function renderCartItems() {
+            const cartItemsContainer = document.getElementById('cartItems');
+
+            cartItemsContainer.innerHTML = cartItems.map(item => `
+                <div class="flex items-center justify-between p-4 bg-primary-light rounded-xl">
+                    <div class="flex items-center space-x-4">
+                        <img 
+                            src="${item.image}" 
+                            alt="${item.name}" 
+                            class="w-16 h-16 rounded-lg object-cover"
+                        >
+                        <div>
+                            <h4 class="font-medium">${item.name}</h4>
+                            <p class="text-sm text-secondary-muted">${item.color} • ${item.size}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center space-x-2">
+                            <button onclick="updateQuantity(${item.id}, -1)" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <span class="w-8 text-center">${item.quantity}</span>
+                            <button onclick="updateQuantity(${item.id}, 1)" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <span class="font-bold">$${(item.price * item.quantity).toFixed(2)}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Function to add item to cart
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                showSuccess(`Added ${product.name} to cart`);
+            }
+        }
+
+        // Function to update quantity
+        function updateQuantity(itemId, change) {
+            const item = cartItems.find(i => i.id === itemId);
+            if (item) {
+                item.quantity = Math.max(1, item.quantity + change);
+                renderCartItems();
+            }
+        }
+
+        // Function to switch tabs
+        function switchTab(tabId) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected tab content
+            document.getElementById(tabId).classList.add('active');
+
+            // Update active tab button
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(btn =>
+                btn.textContent.trim().toLowerCase() === tabId.toLowerCase()
+            );
+
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+            }
+
+            // Close mobile menu if open
+            document.getElementById('mobileMenu').classList.add('hidden');
+        }
+
+        // Function to process payment
+        function processPayment() {
+            showSuccess('Payment processed successfully! Your order is confirmed.');
+        }
+
+        // Function to show success modal
+        function showSuccess(message) {
+            document.getElementById('successMessage').textContent = message;
+            document.getElementById('successModal').classList.remove('hidden');
+        }
+
+        // Function to close success modal
+        function closeSuccessModal() {
+            document.getElementById('successModal').classList.add('hidden');
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Waitlist form submission
+            document.getElementById('waitlistForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+                const email = document.getElementById('email').value;
+                const emailError = document.getElementById('emailError');
+
+                // Simple email validation
+                if (!email || !email.includes('@') || !email.includes('.')) {
+                    emailError.classList.remove('hidden');
+                    return;
+                }
+
+                emailError.classList.add('hidden');
+                showSuccess('You have been added to the waitlist! Check your email for confirmation.');
+                this.reset();
+            });
+
+            // Contact form submission
+            document.getElementById('contactForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+                showSuccess('Your message has been sent! We\'ll get back to you within 24 hours.');
+                this.reset();
+            });
+
+            // Mobile menu toggle
+            document.getElementById('mobileMenuBtn').addEventListener('click', function () {
+                const menu = document.getElementById('mobileMenu');
+                menu.classList.toggle('hidden');
+
+                // Change icon
+                const icon = this.querySelector('i');
+                if (menu.classList.contains('hidden')) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                } else {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                }
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function (event) {
+                const menu = document.getElementById('mobileMenu');
+                const menuBtn = document.getElementById('mobileMenuBtn');
+
+                if (!menu.contains(event.target) && !menuBtn.contains(event.target) && !menu.classList.contains('hidden')) {
+                    menu.classList.add('hidden');
+                    const icon = menuBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+
+            // Prevent default anchor behavior
+            document.querySelectorAll('a').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    // You could add custom navigation logic here
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>
