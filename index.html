@@ -115,6 +115,44 @@
             background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noise"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noise)"/%3E%3C/svg%3E');
             opacity: 0.04;
         }
+
+        .reveal {
+            opacity: 0;
+            animation: slide-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .delay-100 {
+            animation-delay: 100ms;
+        }
+
+        .delay-200 {
+            animation-delay: 200ms;
+        }
+
+        .delay-300 {
+            animation-delay: 300ms;
+        }
+
+        .delay-400 {
+            animation-delay: 400ms;
+        }
+
+        .delay-500 {
+            animation-delay: 500ms;
+        }
+
+        .nav-indicator {
+            position: absolute;
+            bottom: -8px;
+            height: 2px;
+            background: #FFFFFF;
+            border-radius: 99px;
+            box-shadow: 0 0 15px 1px rgba(255, 255, 255, 0.8);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0;
+            pointer-events: none;
+            margin: 0 !important;
+        }
     </style>
 </head>
 
@@ -124,7 +162,7 @@
 
     <!-- Navigation -->
     <header class="fixed top-0 left-0 right-0 z-40 glass-effect">
-        <nav class="container mx-auto px-6 py-4">
+        <nav class="container mx-auto px-6 py-3">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-3">
                     <img src="logo.png" alt="Celtic Cross Logo"
@@ -132,7 +170,7 @@
                     <img src="NameLogo.png" alt="PRJCT SXNT Logo" class="h-6 object-contain brightness-200">
                 </div>
 
-                <div class="hidden md:flex items-center space-x-8">
+                <div class="hidden md:flex items-center space-x-8 relative" id="navContainer">
                     <button onclick="switchTab('home')"
                         class="tab-btn text-sm font-medium hover:text-accent transition-colors active">Home</button>
                     <button onclick="switchTab('gallery')"
@@ -143,6 +181,7 @@
                         class="tab-btn text-sm font-medium hover:text-accent transition-colors">Contact</button>
                     <button onclick="switchTab('payment')"
                         class="tab-btn text-sm font-medium hover:text-accent transition-colors">Payment</button>
+                    <div id="navIndicator" class="nav-indicator"></div>
                 </div>
 
                 <button id="mobileMenuBtn" class="md:hidden text-xl">
@@ -172,7 +211,7 @@
     <main class="pt-20">
         <!-- Home Tab - Waitlist -->
         <div id="home" class="tab-content active min-h-screen">
-            <div class="container mx-auto px-6 py-16">
+            <div class="container mx-auto px-6 py-8">
                 <div class="max-w-6xl mx-auto">
                     <!-- Floating Elements Background -->
                     <div class="absolute inset-0 overflow-hidden pointer-events-none">
@@ -186,33 +225,31 @@
                     </div>
 
                     <div class="relative z-10">
-                        <div class="text-center mb-16">
-                            <div class="inline-block mb-8">
-                                <div class="w-48 h-48 mx-auto mb-10 floating-element">
+                        <div class="text-center mb-4">
+                            <div class="inline-block mb-4">
+                                <div class="w-32 h-32 mx-auto mb-6 floating-element reveal">
                                     <img src="logo.png" alt="Celtic Cross Logo"
                                         class="w-full h-full object-contain grayscale brightness-200 contrast-125">
                                 </div>
-                                <div class="text-xs uppercase tracking-[0.4em] text-secondary-muted mb-6 font-medium">
+                                <div
+                                    class="text-[10px] uppercase tracking-[0.4em] text-secondary-muted mb-4 font-medium reveal delay-100">
                                     Establishing the New Covenant</div>
-                                <div class="flex justify-center mb-10">
+                                <div class="flex justify-center mb-6 reveal delay-200">
                                     <img src="NameLogo.png" alt="PRJCT SXNT"
-                                        class="h-16 md:h-24 object-contain brightness-200">
+                                        class="h-12 md:h-16 object-contain brightness-200">
                                 </div>
-                                <p class="text-xl text-secondary-muted max-w-2xl mx-auto leading-relaxed font-light">
-                                    Where ancient faith meets the noir future. A monochrome distillation of Christian
-                                    streetwear.
-                                </p>
                             </div>
                         </div>
 
-                        <div class="max-w-2xl mx-auto glass-effect rounded-2xl p-8 md:p-12">
-                            <h2 class="text-3xl font-bold mb-6 text-center">Join the Movement</h2>
-                            <p class="text-secondary-muted text-center mb-8">
+                        <div id="waitlistFormContainer"
+                            class="max-w-2xl mx-auto glass-effect rounded-2xl p-4 md:p-6 reveal delay-300">
+                            <h2 class="text-2xl font-bold mb-4 text-center">Join the Movement</h2>
+                            <p class="text-secondary-muted text-sm text-center mb-6">
                                 Be the first to experience our exclusive collection. Sign up for early access, special
                                 pricing, and limited edition drops.
                             </p>
 
-                            <form id="waitlistForm" class="space-y-6">
+                            <form id="waitlistForm" class="space-y-4">
                                 <div>
                                     <input type="email" id="email" required placeholder="Enter your email address"
                                         class="w-full px-6 py-4 bg-primary-light border border-gray-800 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all">
@@ -220,48 +257,50 @@
                                         email address</div>
                                 </div>
 
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <input type="text" id="firstName" placeholder="First Name"
-                                        class="px-6 py-4 bg-primary-light border border-gray-800 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all">
-                                    <input type="text" id="lastName" placeholder="Last Name"
-                                        class="px-6 py-4 bg-primary-light border border-gray-800 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all">
-                                </div>
+                                <div id="extraFields" class="hidden space-y-6 animate-slide-up">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <input type="text" id="firstName" placeholder="First Name"
+                                            class="px-6 py-4 bg-primary-light border border-gray-800 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all">
+                                        <input type="text" id="lastName" placeholder="Last Name"
+                                            class="px-6 py-4 bg-primary-light border border-gray-800 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all">
+                                    </div>
 
-                                <div>
-                                    <select id="size"
-                                        class="w-full px-6 py-4 bg-primary-light border border-gray-800 rounded-xl text-white focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all">
-                                        <option value="" disabled selected>Select your preferred size</option>
-                                        <option value="xs">XS</option>
-                                        <option value="s">S</option>
-                                        <option value="m">M</option>
-                                        <option value="l">L</option>
-                                        <option value="xl">XL</option>
-                                        <option value="xxl">XXL</option>
-                                    </select>
-                                </div>
+                                    <div>
+                                        <select id="size"
+                                            class="w-full px-6 py-4 bg-primary-light border border-gray-800 rounded-xl text-white focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all">
+                                            <option value="" disabled selected>Select your preferred size</option>
+                                            <option value="xs">XS</option>
+                                            <option value="s">S</option>
+                                            <option value="m">M</option>
+                                            <option value="l">L</option>
+                                            <option value="xl">XL</option>
+                                            <option value="xxl">XXL</option>
+                                        </select>
+                                    </div>
 
-                                <div class="flex items-center">
-                                    <input type="checkbox" id="newsletter"
-                                        class="w-5 h-5 rounded border-gray-800 bg-primary-light text-accent focus:ring-accent">
-                                    <label for="newsletter" class="ml-3 text-sm text-secondary-muted">
-                                        Receive updates about new collections and exclusive offers
-                                    </label>
-                                </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="newsletter"
+                                            class="w-5 h-5 rounded border-gray-800 bg-primary-light text-accent focus:ring-accent">
+                                        <label for="newsletter" class="ml-3 text-sm text-secondary-muted">
+                                            Receive updates about new collections and exclusive offers
+                                        </label>
+                                    </div>
 
-                                <button type="submit"
-                                    class="w-full py-4 bg-white text-black font-bold rounded-xl hover:bg-gray-200 transition-all duration-500 transform hover:-translate-y-1 uppercase tracking-widest text-sm">
-                                    Join Waitlist
-                                </button>
+                                    <button type="submit"
+                                        class="w-full py-4 bg-white text-black font-bold rounded-xl hover:bg-gray-200 transition-all duration-500 transform hover:-translate-y-1 uppercase tracking-widest text-sm">
+                                        Join Waitlist
+                                    </button>
+                                </div>
                             </form>
 
-                            <div class="mt-8 text-center">
-                                <p class="text-sm text-secondary-muted">
+                            <div class="mt-4 text-center reveal delay-400">
+                                <p class="text-xs text-secondary-muted">
                                     <i class="fas fa-lock mr-2"></i>Your information is secure. We respect your privacy.
                                 </p>
                             </div>
                         </div>
 
-                        <div class="mt-16 text-center">
+                        <div class="mt-8 text-center reveal delay-500">
                             <div class="inline-flex items-center space-x-8">
                                 <div class="text-center">
                                     <div class="text-4xl font-bold text-gradient">2.4K</div>
@@ -297,7 +336,7 @@
 
                 <!-- Floating Elements Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-                    <div class="relative group card-hover">
+                    <div class="relative group card-hover reveal delay-100">
                         <div
                             class="absolute -inset-4 bg-gradient-to-r from-accent to-purple rounded-3xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity">
                         </div>
@@ -312,7 +351,7 @@
                         </div>
                     </div>
 
-                    <div class="relative group card-hover">
+                    <div class="relative group card-hover reveal delay-200">
                         <div
                             class="absolute -inset-4 bg-gradient-to-r from-purple to-gold rounded-3xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity">
                         </div>
@@ -327,7 +366,7 @@
                         </div>
                     </div>
 
-                    <div class="relative group card-hover">
+                    <div class="relative group card-hover reveal delay-300">
                         <div
                             class="absolute -inset-4 bg-gradient-to-r from-gold to-accent rounded-3xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity">
                         </div>
@@ -773,7 +812,7 @@
 
             <div class="border-t border-gray-800 mt-12 pt-8 text-center">
                 <p class="text-secondary-muted text-sm">
-                    &copy; 2024 PRJCT SXNT. All rights reserved. |
+                    &copy; <span id="currentYear"></span>2024</span> PRJCT SXNT. All rights reserved. |
                     <a href="#" class="hover:text-accent transition-colors">Privacy Policy</a> |
                     <a href="#" class="hover:text-accent transition-colors">Terms of Service</a>
                 </p>
@@ -898,7 +937,14 @@
             setupEventListeners();
 
             // Set current year in footer
-            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            const currentYearEl = document.getElementById('currentYear');
+            if (currentYearEl) currentYearEl.textContent = new Date().getFullYear();
+
+            // Initialize nav indicator position
+            setTimeout(() => {
+                const activeBtn = document.querySelector('#navContainer .tab-btn.active');
+                if (activeBtn) updateNavIndicator(activeBtn);
+            }, 100);
         });
 
         // Function to render products
@@ -907,7 +953,7 @@
             const filteredProducts = category === 'all' ? products : products.filter(product => product.category === category);
 
             productsGrid.innerHTML = filteredProducts.map(product => `
-                <div class="relative group card-hover">
+                <div class="relative group card-hover reveal">
                     <div class="absolute -inset-4 bg-white rounded-3xl blur-xl opacity-0 group-hover:opacity-10 transition-opacity"></div>
                     <div class="relative glass-effect rounded-2xl overflow-hidden">
                         ${product.limited ? '<div class="absolute top-4 right-4 bg-white text-black px-3 py-1 rounded-full text-[10px] font-bold z-10 tracking-widest">LIMITED</div>' : ''}
@@ -1034,16 +1080,34 @@
                 btn.classList.remove('active');
             });
 
-            const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(btn =>
+            const navContainer = document.getElementById('navContainer');
+            const activeBtn = Array.from(navContainer.querySelectorAll('.tab-btn')).find(btn =>
                 btn.textContent.trim().toLowerCase() === tabId.toLowerCase()
             );
 
             if (activeBtn) {
                 activeBtn.classList.add('active');
+                updateNavIndicator(activeBtn);
             }
 
             // Close mobile menu if open
             document.getElementById('mobileMenu').classList.add('hidden');
+        }
+
+        // Function to update nav indicator position
+        function updateNavIndicator(activeBtn) {
+            const indicator = document.getElementById('navIndicator');
+            if (!indicator || !activeBtn) return;
+
+            const isMobile = window.innerWidth < 768;
+            if (isMobile) {
+                indicator.style.opacity = '0';
+                return;
+            }
+
+            indicator.style.width = `${activeBtn.offsetWidth}px`;
+            indicator.style.left = `${activeBtn.offsetLeft}px`;
+            indicator.style.opacity = '1';
         }
 
         // Function to process payment
@@ -1064,6 +1128,21 @@
 
         // Setup event listeners
         function setupEventListeners() {
+            // Waitlist form email activity listener
+            const emailInput = document.getElementById('email');
+            const extraFields = document.getElementById('extraFields');
+            const formContainer = document.getElementById('waitlistFormContainer');
+
+            emailInput.addEventListener('focus', function () {
+                if (extraFields.classList.contains('hidden')) {
+                    extraFields.classList.remove('hidden');
+                    // Smooth scroll to ensure form is fully in view
+                    setTimeout(() => {
+                        formContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 100);
+                }
+            });
+
             // Waitlist form submission
             document.getElementById('waitlistForm').addEventListener('submit', function (e) {
                 e.preventDefault();
@@ -1079,6 +1158,7 @@
                 emailError.classList.add('hidden');
                 showSuccess('You have been added to the waitlist! Check your email for confirmation.');
                 this.reset();
+                extraFields.classList.add('hidden');
             });
 
             // Contact form submission
